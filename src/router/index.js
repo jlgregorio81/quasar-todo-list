@@ -30,13 +30,14 @@ export default route(function (/* { store, ssrContext } */) {
 
   //..protect the routes
   Router.beforeEach((to, from) => {
+    
     const storeAuth = useStoreAuth()
-    if(!storeAuth.user.uid && (to.name != 'signin' && to.name != 'signup') ){
+    if(!storeAuth.user.uid && to.name != 'signin' && to.name != 'signup' && to.name != 'home' ){
       //console.log("From:", from, "To:", to )
       return { name: 'signin' }
     } 
 
-    if(storeAuth.user.uid && (to.name == 'signin' || to.name == 'signup')){
+    if(storeAuth.user.uid && (to.name == 'signin' || to.name == 'signup' || to.name == 'home')){
       return false
     }
   

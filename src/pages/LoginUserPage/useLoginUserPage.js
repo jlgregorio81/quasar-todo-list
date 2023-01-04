@@ -14,8 +14,8 @@ export function useLoginUserPage() {
 
   //..new user data
   const user = reactive({
-    email: '',
-    password: ''
+    email: 'teste@teste.com',
+    password: '123456'
   })
 
   //..login user, using the auth
@@ -26,7 +26,7 @@ export function useLoginUserPage() {
         .then(() => {
           Dialog.create({ title: 'Deu certo!', message: 'Bem vindo!' })
             .onDismiss(() => {
-              router.push('/')
+              router.push('/tasks')
             })
         })
         .catch((error) => {
