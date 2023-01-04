@@ -1,0 +1,21 @@
+{
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs": true,
+  "editor.formatOnSave": false,
+  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+  //"editor.defaultFormatter": "esbenp.prettier-vscode",
+  // "editor.codeActionsOnSave": [
+  //   "source.fixAll.eslint"
+  // ],
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "vue"
+  ],
+  "vue3snippets.enable-compile-vue-file-on-did-save-code": false,
+  "[javascript]": {
+    //"editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  }
+}
