@@ -37,7 +37,12 @@
     />
 
     <div class="row justify-center">
-      <q-btn label="Cadastrar" type="submit" color="primary" @click="onSubmit" />
+      <q-btn
+        label="Cadastrar"
+        type="submit"
+        color="primary"
+        @click="onSubmit"
+      />
       <q-btn
         @click="onReset"
         label="Limpar"
@@ -50,30 +55,26 @@
   </div>
 </template>
 <script setup>
-import { ref } from "vue"
+import { ref } from "vue";
 import { useNewUserPage } from "./useNewUserPage";
-import { useQuasar } from 'quasar'
+import { useQuasar } from "quasar";
 
 //..the ref of HTML element
-const emailRef = ref(null)
+const emailRef = ref(null);
 
 //..import the objects from use file
 const { newUser, createUser } = useNewUserPage();
 
-//..use quasar to show spinner
-const $q = useQuasar()
-
-//..reset
+//..reset of the data
 const onReset = () => {
-    newUser.email = ''
-    newUser.password = ''
-    emailRef.value.focus()
-}
+  newUser.email = "";
+  newUser.password = "";
+  emailRef.value.focus();
+};
 
 //..button to submit
 const onSubmit = () => {
-  createUser(newUser)
-}
-
+    createUser(newUser);
+};
 </script>
 <style lang="scss" scoped></style>

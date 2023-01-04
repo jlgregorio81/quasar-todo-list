@@ -1,7 +1,13 @@
 import { reactive } from 'vue'
-import { useStoreAuth } from 'src/stores/storeAuth' 
+import { useStoreAuth } from 'src/stores/storeAuth'
+import { Loading, Dialog } from 'quasar'
+import { useRouter } from 'vue-router'
+
 
 export function useNewUserPage() {
+
+  //..router
+  const router = useRouter()
 
   //..store to deal with authentication
   const storeAuth = useStoreAuth()
@@ -14,7 +20,23 @@ export function useNewUserPage() {
 
   //..add a new user, using the auth
   const createUser = (newUser) => {
-    storeAuth.createUser(newUser);
+    Loading.show({ message: 'Aguarde...' })
+    setTimeout(() => {
+
+      storeAuth.createUser(newUser)
+        .then(() => {
+          Dialog.create({ title: 'Deu certo!', message: 'Usuário cadastrado com sucesso!' })
+            .onDismiss(() => {
+              router.push('/')
+            })
+        })
+        .catch((error) => {
+          //console.log("Erro:", error) 
+          Dialog.create({ title: 'Deu errado!', message: error.message, style: 'color:red' })
+        })
+        .finally(() => { Loading.hide() })
+
+    }, 1500)
   }
 
 
