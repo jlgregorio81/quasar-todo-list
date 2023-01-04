@@ -2,18 +2,18 @@
   <div class="q-pa-md" style="max-width: 400px; margin: 0 auto">
     <div>
       <q-icon
-        name="person_add"
+        name="login"
         size="48px"
         color="primary"
         class="float-left q-mr-sm"
       />
-      <h3 class="pl-4 text-primary">Cadastrar</h3>
+      <h3 class="pl-4 text-primary">Entrar</h3>
     </div>
 
     <q-input
       autofocus="true"
       ref="emailRef"
-      v-model="newUser.email"
+      v-model="user.email"
       filled
       label="E-mail"
       hint="Seu melhor e-mail"
@@ -25,7 +25,7 @@
     />
 
     <q-input
-      v-model="newUser.password"
+      v-model="user.password"
       filled
       maxlength="8"
       type="password"
@@ -38,7 +38,7 @@
 
     <div class="row justify-center">
       <q-btn
-        label="Cadastrar"
+        label="Entrar"
         type="submit"
         color="primary"
         @click="onSubmit"
@@ -56,25 +56,24 @@
 </template>
 <script setup>
 import { ref } from "vue";
-import { useNewUserPage } from "./useNewUserPage";
-import { useQuasar } from "quasar";
+import { useLoginUserPage } from "./useLoginUserPage";
 
 //..the ref of HTML element
 const emailRef = ref(null);
 
 //..import the objects from use file
-const { newUser, createUser } = useNewUserPage();
+const { user , loginUser } = useLoginUserPage();
 
 //..reset of the data
 const onReset = () => {
-  newUser.email = "";
-  newUser.password = "";
+  user.email = "";
+  user.password = "";
   emailRef.value.focus();
 };
 
 //..button to submit
 const onSubmit = () => {
-    createUser();
+    loginUser();
 };
 </script>
 <style lang="scss" scoped></style>

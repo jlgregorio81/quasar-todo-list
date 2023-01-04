@@ -4,11 +4,14 @@
       <q-toolbar>
         <q-btn flat icon="home" to="/" />
         <q-toolbar-title> {{ appName }} </q-toolbar-title>
-        <q-btn color="white" icon="person_add" flat to="/signup"
-          >Cadastrar</q-btn
-        >
-        <q-btn color="white" icon="login" flat>Entrar</q-btn>
+        <div v-if="!storeAuth.user.uid">
+          <q-btn color="white" icon="person_add" flat to="/signup"
+            >Cadastrar</q-btn
+          >
+          <q-btn to="/signin" color="white" icon="login" flat>Entrar</q-btn>
+        </div>
         <q-btn
+          v-if="storeAuth.user.uid"
           round
           flat
           color="white "
@@ -39,12 +42,13 @@
           </q-item-section>
         </q-item>
         <q-separator />
-        <q-item>
+        <q-item clickable @click="logout()">
           <q-item-section avatar>
-            <q-icon name="logout" />
+            <q-icon name="logout" color="" />
           </q-item-section>
           <q-item-section> Sair </q-item-section>
         </q-item>
+        <!-- <q-btn flat align="left" icon="logout" color="red" class="full-width">Sair</q-btn> -->
       </q-list>
     </q-drawer>
     <q-page-container>
@@ -54,21 +58,18 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { useMainLayout } from "./useMainLayout";
 
-const appName = 'Lista de Tarefas'
-
-const rightDrawerOpen = ref(false)
-
-const linkItems = [
-  { name: 'tasks', title: 'Tarefas', icon: 'task_alt', link: '/tasks' },
-  { name: 'stats', title: 'Estatísticas', icon: 'bar_chart', link: '/stats' },
-  { name: 'account', title: 'Minha Conta', icon: 'badge', link: '/account' }
-]
-
-const toggleRightDrawer = () => {
-  rightDrawerOpen.value = !rightDrawerOpen.value
-}
+//..import the uses
+const {
+  appName,
+  linkItems,
+  rightDrawerOpen,
+  toggleRightDrawer,
+  storeAuth,
+  logout,
+  onMounted,
+} = useMainLayout();
 </script>
 
 <style lang="scss">
