@@ -33,13 +33,19 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-xs-12 col-md-6">
-        Criado em: {{   }}
-      </div>
+      <div class="col-xs-12 col-md-6 text-grey q-pa-sm">Atualizado em: {{ formatDate(todo.time) }}</div>
       <div class="col-xs-12 col-md-6">
         <div class="row justify-end">
-          <q-btn icon="edit" flat color="secondary">Editar</q-btn>
-          <q-btn icon="delete" flat color="red">Excluir</q-btn>
+          <q-btn
+            icon="edit"
+            flat
+            color="secondary"
+            @click="$emit('editClicked')"
+            >Editar</q-btn
+          >
+          <q-btn icon="delete" flat color="red" @click="$emit('deleteClicked')"
+            >Excluir</q-btn
+          >
         </div>
       </div>
     </div>
@@ -55,8 +61,14 @@ export default {
       oldTodoData: {},
     };
   },
-  methods: {},
+  methods: {
+    formatDate(timeStampDate) {
+      let date = new Date(parseInt(timeStampDate));
+      return date.toLocaleDateString('pt-BR')
+    },
+  },
   watch: {},
+  emits: ["editClicked", "deleteClicked"],
   props: {
     todo: {
       id: {

@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { db } from "src/js/firebase";
 import { useStoreAuth } from "./storeAuth"
-import { doc, setDoc, addDoc, collection, onSnapshot, serverTimestamp } from "firebase/firestore"
+import { doc, deleteDoc, addDoc, collection, onSnapshot, serverTimestamp, query, orderBy } from "firebase/firestore"
 
 //..store the todo list collection ref
 let todoCollectionRef
@@ -13,20 +13,25 @@ let todoListSnapshot = null
 export const useStoreTodo = defineStore("storeTodo", {
     state: () => {
         return {
-            todoList: []
+            todoList: [],
+            isLoaded: false
         }
     },
     actions: {
         init() {
-            const storeAuth = useStoreAuth()
-            let userUid = storeAuth.user.uid
-            console.log("User: ", storeAuth.user)
-            todoCollectionRef = collection(db, 'users', userUid, 'todo-list')
-            //console.log("Collection REF: ", todoCollectionRef)
-            this.getTodoList()
+            setTimeout(() => {
+                const storeAuth = useStoreAuth()
+                let userUid = storeAuth.user.uid
+                console.log("User: ", storeAuth.user)
+                todoCollectionRef = collection(db, 'users', userUid, 'todo-list')
+                //console.log("Collection REF: ", todoCollectionRef)
+                this.getTodoList()
+            }, 2000);
         },
         async getTodoList() {
-            todoListSnapshot = onSnapshot(todoCollectionRef, (querySnapshot) => {
+            const q = query(todoCollectionRef, orderBy('time', 'desc'))
+            // todoListSnapshot = onSnapshot(todoCollectionRef, (querySnapshot) => {
+            todoListSnapshot = onSnapshot(q, (querySnapshot) => {
                 let todoList = []
                 querySnapshot.forEach((doc) => {
                     let todo = {
@@ -38,16 +43,22 @@ export const useStoreTodo = defineStore("storeTodo", {
                     todoList.push(todo)
                 })
                 this.todoList = todoList
+                this.isLoaded = true
                 //console.log("Todo List: ", todoList)
             })
         },
+        //..create a todo
         async createTodo(newTodo) {
-            console.log("New Todo:", newTodo)
+            let currentDate = new Date().getTime().toString()
             await addDoc(todoCollectionRef, {
                 description: newTodo.description,
                 status: newTodo.status,
-                time: serverTimestamp()
+                time: currentDate
             })
         },
+        //..delete the todo
+        async deleteTodo(idToDelete) {
+            await deleteDoc(doc(todoCollectionRef, idToDelete))
+        }
     }
 })

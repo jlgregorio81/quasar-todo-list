@@ -24,14 +24,11 @@
     <q-drawer v-model="rightDrawerOpen" bordered side="right" id="main-drawer">
       <q-list>
         <q-item-label header> Essential Links </q-item-label>
-        <q-item>
+        <q-item clickable>
           <q-item-section avatar>
-            <img
-              style="width: 32px"
-              src="https://cdn.quasar.dev/img/avatar.png"
-            />
+            <q-icon name="account_circle" />
           </q-item-section>
-          <q-item-section>Nome do Usuário</q-item-section>
+          <q-item-section>{{ storeAuth.user.fullName ?  storeAuth.user.fullName : storeAuth.user.email   }}</q-item-section>
         </q-item>
         <q-item v-for="item in linkItems" :key="item.name" :to="item.link">
           <q-item-section avatar>
@@ -44,9 +41,9 @@
         <q-separator />
         <q-item clickable @click="logout()">
           <q-item-section avatar>
-            <q-icon name="logout" color="" />
+            <q-icon name="logout" color="red-10" />
           </q-item-section>
-          <q-item-section> Sair </q-item-section>
+          <q-item-section class="text-red-10"> Sair </q-item-section>
         </q-item>
         <!-- <q-btn flat align="left" icon="logout" color="red" class="full-width">Sair</q-btn> -->
       </q-list>
