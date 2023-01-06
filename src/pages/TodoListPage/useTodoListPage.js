@@ -1,22 +1,28 @@
 import { useStoreTodo } from "src/stores/storeTodo";
-import { onMounted, ref } from "vue";
+import { onMounted, reactive } from "vue";
+
 
 export function useTodoListPage() {
 
-
     const storeTodo = useStoreTodo()
 
-    const todoList = ref([])
+    const statusList = ['A fazer', 'Fazendo', 'Feito']
 
+    const newTodo = reactive({
+        description : '',
+        status: 'A fazer',
+    })
 
     onMounted(() => {
         storeTodo.init()
-        todoList.value = storeTodo.getTodoList()
-        //console.log("Store Todo: ", storeTodo)
     })
 
+    const addTodo = () => {
+        storeTodo.createTodo({
+            description : newTodo.description,
+            status : newTodo.status
+        })
+    }
 
-    return { todoList, onMounted }
-
-
+    return { storeTodo, onMounted, statusList, newTodo, addTodo }
 }
