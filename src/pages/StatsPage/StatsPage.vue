@@ -2,7 +2,7 @@
   <div class="q-ma-sm">
     <div class="row q-ma-sm justify-center">
       <div class="col-xs-12 col-md-3 q-ma-sm">
-        <h4 class="text-indigo-14">Estatísticas</h4>
+        <h4 class="text-indigo-14 text-center">Estatísticas</h4>
         <q-list separator>
           <q-item class="bg-red-2 text-h6">
             <q-item-section avatar>
@@ -27,7 +27,7 @@
               <q-icon name="done" />
             </q-item-section>
             <q-item-section>
-              Fazendo: {{ storeTodo.getCountDone }}
+              Feito: {{ storeTodo.getCountDone }}
             </q-item-section>
           </q-item>
           <!--  -->
@@ -42,8 +42,12 @@
         </q-list>
       </div>
       <div class="col-xs-12 col-md-5 q-ma-sm">
-        <h4 class="text-indigo-14">Gráficos</h4>
-          
+        <h4 class="text-indigo-14 text-center">Gráficos</h4>
+
+        <Pie :data="chartData" :options="chartOptions" />
+        <!-- <Bar :data="chartData" :options="chartOptions" /> -->
+       
+
       </div>
     </div>
   </div>
@@ -51,8 +55,13 @@
 
 <script setup>
 import { useStatsPage } from "./useStatsPage";
+import { Chart as ChartJS, Title, ArcElement, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
+import { Pie, Bar } from 'vue-chartjs'
 
-const { storeTodo } = useStatsPage();
+ChartJS.register(Title, ArcElement, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
+
+
+const { storeTodo, chartData, chartOptions } = useStatsPage();
 </script>
 
 <style scoped>
