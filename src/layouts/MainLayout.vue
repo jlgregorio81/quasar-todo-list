@@ -23,8 +23,8 @@
 
     <q-drawer v-model="rightDrawerOpen" bordered side="right" id="main-drawer">
       <q-list>
-        <q-item-label header> Essential Links </q-item-label>
-        <q-item clickable>
+        <q-item-label header> Links Essenciais </q-item-label>
+        <q-item clickable to="/profile">
           <q-item-section avatar>
             <q-icon name="account_circle" />
           </q-item-section>

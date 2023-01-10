@@ -28,9 +28,9 @@ export function useTodoListPage() {
             }).then(() => {
                 newTodo.description = ''
                 newTodo.status = 'A fazer'
-                Notify.create({ message: 'Tarefa salva com sucesso!', color: 'indigo-10', icon: 'info', timeout: 2500 })
+                Notify.create({ message: 'Tarefa salva com sucesso!', color: 'indigo-10', icon: 'info', timeout: 1000 })
             }).catch((error) => {
-                Notify.create({ message: 'Algo errado não está certo... A tarefa não foi salva!', color: 'red-10', icon: 'error', timeout: 3000 })
+                Notify.create({ message: 'Algo errado não está certo... A tarefa não foi salva!', color: 'red-10', icon: 'error', timeout: 1000 })
             }).finally(() => {
                 Loading.hide()
             })
@@ -42,14 +42,27 @@ export function useTodoListPage() {
         Loading.show({ message: 'Aguarde...' })
         storeTodo.deleteTodo(idToDelete
             ).then(() => {
-                Notify.create({ message: 'Tarefa excluída com sucesso!', color: 'indigo-10', icon: 'info', timeout: 2500 })
+                Notify.create({ message: 'Tarefa excluída com sucesso!', color: 'indigo-10', icon: 'info', timeout: 1000 })
                 console.log('Notificação!')
-            }).catch(()=>{
-                Notify.create({ message: 'Algo errado não está certo... Não foi possível excluir a tarefa!', color: 'red-10', icon: 'error', timeout: 3000 })
+            }).catch((error)=>{
+                Notify.create({ message: 'Algo errado não está certo... Não foi possível excluir a tarefa!', color: 'red-10', icon: 'error', timeout: 1000 })
             }).finally(()=>{
                 Loading.hide()
             })            
     }
 
-    return { storeTodo, onMounted, statusList, newTodo, addTodo, deleteTodo }
+    const updateTodo = (id, todo) => {
+        Loading.show({ message: 'Aguarde...' })
+        storeTodo.updateTodo(id, todo
+            ).then(()=>{
+                Notify.create({ message: 'Tarefa atualizada com sucesso!', color: 'indigo-10', icon: 'info', timeout: 1000 }) 
+            }).catch((error)=>{
+                Notify.create({ message: 'Algo errado não está certo... Não foi possível atualizar a tarefa!', color: 'red-10', icon: 'error', timeout: 1000 })
+                console.log("Erro de atualização: ", error.message)
+            }).finally(()=>{
+                Loading.hide()
+            })
+    }
+
+    return { storeTodo, onMounted, statusList, newTodo, addTodo, deleteTodo, updateTodo }
 }

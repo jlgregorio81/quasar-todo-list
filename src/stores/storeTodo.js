@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { db } from "src/js/firebase";
 import { useStoreAuth } from "./storeAuth"
-import { doc, deleteDoc, addDoc, collection, onSnapshot, serverTimestamp, query, orderBy } from "firebase/firestore"
+import { doc, deleteDoc, updateDoc, addDoc, collection, onSnapshot, serverTimestamp, query, orderBy } from "firebase/firestore"
 
 //..store the todo list collection ref
 let todoCollectionRef
@@ -59,6 +59,15 @@ export const useStoreTodo = defineStore("storeTodo", {
         //..delete the todo
         async deleteTodo(idToDelete) {
             await deleteDoc(doc(todoCollectionRef, idToDelete))
+        },
+        //update the todo
+        async updateTodo(idToUpdate, todo){
+            //console.log("id para atualziar: ", idToUpdate)
+            await updateDoc(doc(todoCollectionRef, idToUpdate), {
+                description: todo.description,
+                status: todo.status
+            })
         }
+
     }
 })

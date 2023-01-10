@@ -74,7 +74,7 @@ const onReset = () => {
 
 //..button to submit
 const onSubmit = () => {
-    createUser();
+  createUser();
 };
 </script>
 <style lang="scss" scoped></style>

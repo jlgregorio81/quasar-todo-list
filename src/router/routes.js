@@ -10,7 +10,8 @@ const routes = [
       { path: 'signin', name: 'signin', component: () => import('pages/LoginUserPage/LoginUserPage.vue') },
       { path: 'about', name: 'about', component: () => import('pages/AboutPage.vue') },
       { path: 'stats', name: 'stats', component: () => import('pages/StatsPage.vue') },
-      { path: 'account', name: 'account', component: () => import('pages/AccountPage.vue') }
+      { path: 'profile', name: 'profile', component: () => import('pages/UserProfilePage/UserProfilePage.vue')}
+
     ]
   },
 

@@ -3,7 +3,7 @@
     <div class="bg-blue-1 q-pa-md">
       <div class="row justify-center">
         <div class="col-xs-12 col-md-4">
-          <h4 class="text-center text-indigo-8">
+          <h4 class="text-center text-primary">
             <q-icon name="task" size="lg" />Cadastrar Nova Tarefa
           </h4>
         </div>
@@ -45,7 +45,7 @@
         </div>
       </div>
     </div>
-    <div v-if="!storeTodo.isLoaded">
+    <!-- <div v-if="!storeTodo.isLoaded">
       <div class="row justify-center">
         <q-spinner-dots color="primary" size="5em" :thickness="3" />
       </div>
@@ -54,10 +54,16 @@
           Aguarde! carregando tarefas....
         </h5>
       </div>
-    </div>
+    </div> -->
     <div class="row q-ma-sm">
+      <q-inner-loading
+        :showing="storeTodo.isLoaded == false"
+        label="Aguarde! Carregando tarefas..."
+        label-class="text-indigo-14"
+        label-style="font-size: 2rem"
+        color="indigo-14"
+      />
       <div
-        v-if="storeTodo.todoList.length > 0"
         class="col-xs-12 col-md-6 col-lg-3"
         v-for="todo in storeTodo.todoList"
         :key="todo.id"
@@ -66,6 +72,8 @@
           class="q-ma-sm"
           :todo="todo"
           @deleteClicked="deleteTodo(todo.id)"
+          @statusChanged="updateTodo(todo.id, todo)"
+          @saveClicked="updateTodo(todo.id, todo)"
         />
       </div>
       <div
@@ -82,7 +90,7 @@
 import { useTodoListPage } from "./useTodoListPage";
 import Todo from "components/Todo.vue";
 
-const { storeTodo, onMounted, statusList, newTodo, addTodo, deleteTodo } =
+const { storeTodo, onMounted, statusList, newTodo, addTodo, deleteTodo, updateTodo } =
   useTodoListPage();
 </script>
 

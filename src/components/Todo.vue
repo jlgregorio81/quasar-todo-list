@@ -11,17 +11,19 @@
       "
       style="cursor: pointer"
     >
-      <div class="col-xs-12 col-md-9 text-body-1">
+      <div class="col-xs-12 text-body-1">
         <q-input
           filled
           dense
           label="Descrição"
-          readonly
-          type="text"
+          :readonly="!needToSave"
+          type="text-area"
+          autogrow
           v-model="todo.description"
+          ref="inputDescription"
         />
       </div>
-      <div class="col-xs-12 col-md-3">
+      <!-- <div class="col-xs-12 col-md-3">
         <q-input
           class="q-ml-sm"
           readonly
@@ -30,22 +32,36 @@
           filled
           v-model="todo.status"
         />
-      </div>
+      </div> -->
     </div>
     <div class="row">
-      <div class="col-xs-12 col-md-6 text-grey q-pa-sm">Atualizado em: {{ formatDate(todo.time) }}</div>
-      <div class="col-xs-12 col-md-6">
+      <div class="col-xs-12 col-md-4 text-grey q-pa-sm">
+        Criado em: {{ formatDate(todo.time) }}
+      </div>
+      <div class="col-xs-12 col-md-8">
         <div class="row justify-end">
+          <q-select
+            :options="statusList"
+            dense
+            label="Status"
+            v-model="todo.status"
+            @update:model-value="$emit('statusChanged')"
+          />
+          <q-btn icon="save" flat color="primary" :disable="!needToSave" @click="saveClicked()" />
+          <q-btn icon="cancel" flat color="secondary" :disable="!needToSave" @click="cancelClicked()"  />
           <q-btn
             icon="edit"
             flat
             color="secondary"
-            @click="$emit('editClicked')"
-            >Editar</q-btn
-          >
-          <q-btn icon="delete" flat color="red" @click="$emit('deleteClicked')"
-            >Excluir</q-btn
-          >
+            @click="editClicked()"
+            :disable="needToSave"
+          ></q-btn>
+          <q-btn
+            icon="delete"
+            flat
+            color="red"
+            @click="$emit('deleteClicked')"
+          ></q-btn>
         </div>
       </div>
     </div>
@@ -58,17 +74,37 @@ export default {
   data() {
     return {
       statusList: ["A fazer", "Fazendo", "Feito"],
-      oldTodoData: {},
+      needToSave: false,
+      oldTodo: {
+        description: '',
+        status: ''
+      },
+
     };
   },
   methods: {
     formatDate(timeStampDate) {
       let date = new Date(parseInt(timeStampDate));
-      return date.toLocaleDateString('pt-BR')
+      return date.toLocaleDateString("pt-BR");
     },
+    editClicked() {
+      this.$emit("editClicked");
+      this.needToSave = true
+      this.oldTodo.description = this.todo.description
+      this.oldTodo.status = this.todo.status
+      this.$refs.inputDescription.focus()
+    },
+    saveClicked(){
+      this.needToSave = false
+      this.$emit("saveClicked")
+    },
+    cancelClicked(){
+      this.needToSave = false
+      this.todo.description = this.oldTodo.description
+      this.todo.status = this.oldTodo.status
+    }
   },
-  watch: {},
-  emits: ["editClicked", "deleteClicked"],
+  emits: ["saveClicked", "editClicked", "deleteClicked", 'statusChanged'],
   props: {
     todo: {
       id: {

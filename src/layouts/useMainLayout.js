@@ -21,7 +21,6 @@ export function useMainLayout() {
   const linkItems = [
     { name: "tasks", title: "Tarefas", icon: "task_alt", link: "/tasks" },
     { name: "stats", title: "Estatísticas", icon: "bar_chart", link: "/stats" },
-    { name: "account", title: "Minha Conta", icon: "badge", link: "/account" },
   ];
 
   //..control the drawer
