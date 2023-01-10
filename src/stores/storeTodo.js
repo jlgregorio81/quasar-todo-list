@@ -61,13 +61,39 @@ export const useStoreTodo = defineStore("storeTodo", {
             await deleteDoc(doc(todoCollectionRef, idToDelete))
         },
         //update the todo
-        async updateTodo(idToUpdate, todo){
+        async updateTodo(idToUpdate, todo) {
             //console.log("id para atualziar: ", idToUpdate)
             await updateDoc(doc(todoCollectionRef, idToUpdate), {
                 description: todo.description,
                 status: todo.status
             })
         }
-
+    },
+    getters: {
+        getLength: (state) => {
+            return state.todoList.length
+        },
+        getCountTodo: (state) => {
+            let total = 0
+            state.todoList.forEach(todo => {
+                total += todo.status == 'A fazer' ?? 1
+            })
+            return total
+        },
+        getCountDoing: (state) => {
+            let total = 0
+            state.todoList.forEach(todo => {
+                total += todo.status == 'Fazendo' ?? 1
+            })
+            return total
+        },
+        getCountDone: (state) => {
+            let total = 0
+            state.todoList.forEach(todo => {
+                total += todo.status == 'Feito' ?? 1
+            })
+            return total
+        },
     }
+
 })
