@@ -32,7 +32,8 @@ export function useMainLayout() {
   const logout = () => {
     storeAuth.logout()
     router.push('/signin')
-    router.go()
+    //..reload the page
+    //router.go()
   }
 
   onMounted(() => {

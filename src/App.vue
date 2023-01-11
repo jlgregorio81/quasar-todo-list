@@ -3,7 +3,7 @@
 </template>
 
 <script >
-import { defineComponent, nextTick } from 'vue'
+import { defineComponent } from 'vue'
 
 
 export default defineComponent({

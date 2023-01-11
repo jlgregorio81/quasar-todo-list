@@ -58,7 +58,7 @@
     <div class="row q-ma-sm">
       <q-inner-loading
         :showing="storeTodo.isLoaded == false"
-        label="Aguarde! Carregando tarefas..."
+        label="Carregando tarefas..."
         label-class="text-indigo-14"
         label-style="font-size: 2rem"
         color="indigo-14"

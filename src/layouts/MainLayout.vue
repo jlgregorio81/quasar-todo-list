@@ -4,12 +4,15 @@
       <q-toolbar>
         <q-btn flat icon="home" to="/" />
         <q-toolbar-title> {{ appName }} </q-toolbar-title>
+        
         <div v-if="!storeAuth.user.uid">
           <q-btn color="white" icon="person_add" flat to="/signup"
             >Cadastrar</q-btn
           >
           <q-btn to="/signin" color="white" icon="login" flat>Entrar</q-btn>
         </div>
+        <q-btn flat color="blue-3" icon="help"  to="/" label="Sobre"
+            />
         <q-btn
           v-if="storeAuth.user.uid"
           round
@@ -18,6 +21,7 @@
           @click="toggleRightDrawer"
           icon="menu"
         ></q-btn>
+
       </q-toolbar>
     </q-header>
 
