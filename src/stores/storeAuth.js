@@ -3,7 +3,7 @@ import { auth } from "src/js/firebase";
 import {
     createUserWithEmailAndPassword,
     getAuth, signInWithEmailAndPassword, signOut,
-    onAuthStateChanged
+    onAuthStateChanged, updatePassword 
 } from "firebase/auth"
 
 export const useStoreAuth = defineStore("storeAuth", {
@@ -60,8 +60,11 @@ export const useStoreAuth = defineStore("storeAuth", {
                 throw error
             })
         },
-
         //..
+        async updatePassword(newPassword){            
+            const user = getAuth().currentUser
+            return await updatePassword(user, newPassword)
+        }
     },
     getters: {
         getUser: (state) => {

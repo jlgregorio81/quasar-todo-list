@@ -12,10 +12,11 @@
       </div>
 
       <q-input
-        autofocus="true"
+        readonly
+        v-model="user.email"
+        autofocus
         filled
         label="E-mail"
-        hint="E-mail"
         lazy-rules
         :rules="[
           (val) => (val && val.length > 0) || 'Por favor, digite seu e-mail.',
@@ -24,31 +25,20 @@
       />
 
       <q-input
+        label="Nova Senha"
+        v-model="user.newPassword"
         filled
         maxlength="8"
-        type="text"
-        label="Nome Completo"
-        lazy-rules
-        :rules="[
-          (val) =>
-            (val !== null && val !== '') || 'Por favor, digite uma senha',
-        ]"
+        type="password"
       />
 
       <div class="row justify-center">
         <q-btn
-          label="Atualizar"
+          class="q-ma-md"
+          label="Atualizar Senha"
           type="submit"
           color="primary"
-          @click="onSubmit"
-        />
-        <q-btn
-          @click="onReset"
-          label="Limpar"
-          type="reset"
-          color="primary"
-          flat
-          class="q-ml-sm"
+          @click="updateUser()"
         />
       </div>
     </div>
@@ -58,7 +48,7 @@
 <script setup>
 import { useUserProfilePage } from "./useUserProfilePage.js";
 
-const { storeAuth } = useUserProfilePage();
+const { storeAuth, user, updateUser } = useUserProfilePage();
 </script>
 
 <style lang="scss" scoped></style>

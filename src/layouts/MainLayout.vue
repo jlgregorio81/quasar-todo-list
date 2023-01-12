@@ -25,7 +25,7 @@
       </q-toolbar>
     </q-header>
 
-    <q-drawer v-model="rightDrawerOpen" bordered side="right" id="main-drawer">
+    <q-drawer behavior="mobile" v-model="rightDrawerOpen" bordered side="right" id="main-drawer">
       <q-list>
         <q-item-label header> Links Essenciais </q-item-label>
         <q-item clickable to="/profile">
