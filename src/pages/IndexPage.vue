@@ -4,7 +4,7 @@
       <div class="col-xs-12 col-md-3">
         <q-card class="my-card bg-indigo-14 text-white" bordered>
           <q-card-section class="bg-white">
-            <img class="logo" src="src/assets/quasar-logo.svg" alt="" />
+            <img class="logo" src="~assets/quasar-logo.svg" alt="" />
           </q-card-section>
           <q-card-section>
             <div class="text-h6 text-center">Quasar Framework</div>
@@ -37,7 +37,7 @@
       <div class="col-xs-12 col-md-3">
         <q-card class="my-card bg-cyan-10 text-white" bordered>
           <q-card-section class="bg-white">
-            <img class="logo" src="src/assets/vue-logo.svg" alt="" />
+            <img class="logo" src="~assets/vue-logo.svg" alt="" />
           </q-card-section>
           <q-card-section>
             <div class="text-h6 text-center">Vue.js Framework</div>
@@ -69,7 +69,7 @@
       <div class="col-xs-12 col-md-3">
         <q-card class="my-card bg-green-14 text-white" bordered>
           <q-card-section class="bg-white">
-            <img class="logo" src="src/assets/pinia-logo.svg" alt="" />
+            <img class="logo" src="~assets/pinia-logo.svg" alt="" />
           </q-card-section>
           <q-card-section>
             <div class="text-h6 text-center">Pinia</div>
@@ -106,7 +106,7 @@
       <div class="col-xs-12 col-md-3">
         <q-card class="my-card bg-cyan-10 text-white" bordered>
           <q-card-section class="bg-white">
-            <img class="logo" src="src/assets/vue-chartjs-logo.png" alt="" />
+            <img class="logo" src="~assets/vue-chartjs-logo.png" alt="" />
           </q-card-section>
           <q-card-section>
             <div class="text-h6 text-center">VueChart.js</div>
@@ -135,7 +135,7 @@
       <div class="col-xs-12 col-md-3">
         <q-card class="my-card bg-orange-10 text-white" bordered>
           <q-card-section class="bg-white">
-            <img class="logo" src="src/assets/firebase-logo.png" alt="" />
+            <img class="logo" src="~assets/firebase-logo.png" alt="" />
           </q-card-section>
           <q-card-section>
             <div class="text-h6 text-center">Firebase (by Google)</div>
@@ -168,7 +168,7 @@
       <div class="col-xs-12 col-md-3">
         <q-card class="my-card bg-blue-grey-9 text-white" bordered>
           <q-card-section class="bg-white">
-            <img class="logo rounded" src="src/assets/me.jpg" alt="" />
+            <img class="logo rounded" src="~assets/me.jpg" alt="" />
           </q-card-section>
           <q-card-section>
             <div class="text-h6 text-center">
