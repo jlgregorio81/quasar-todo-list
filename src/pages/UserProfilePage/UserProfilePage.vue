@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <transition appear enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
     <div class="q-pa-md" style="max-width: 400px; margin: 0 auto">
       <div>
         <q-icon
@@ -42,7 +42,7 @@
         />
       </div>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script setup>

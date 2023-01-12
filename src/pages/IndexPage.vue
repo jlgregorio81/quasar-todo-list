@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div style="" class="row q-pa-md justify-center items-start q-gutter-md">
+  <transition appear enter-active-class="animated bounceInRight" leave-active-class="animated bounceOutRight">
+    <div style="margin-top: 2rem" class="row q-pa-md justify-center items-start q-gutter-md">
       <div class="col-xs-12 col-md-3">
         <q-card class="my-card bg-indigo-14 text-white" bordered>
           <q-card-section class="bg-white">
@@ -100,6 +100,8 @@
         </q-card>
       </div>
     </div>
+  </transition>
+  <transition appear enter-active-class="animated bounceInLeft">
     <div class="row q-pa-md justify-center q-gutter-md">
       <div class="col-xs-12 col-md-3">
         <q-card class="my-card bg-cyan-10 text-white" bordered>
@@ -214,12 +216,12 @@
               icon="fa-solid fa-globe"
               @click="navigate('https://www.jlgregorio.com.br')"
               label="Viste meu site!"
-              />
+            />
           </q-card-actions>
         </q-card>
       </div>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script setup>

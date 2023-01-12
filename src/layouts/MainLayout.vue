@@ -3,8 +3,7 @@
     <q-header elevated>
       <q-toolbar>
         <q-btn flat icon="home" to="/" />
-        <q-toolbar-title> {{ appName }} </q-toolbar-title>
-        
+        <q-toolbar-title> {{ appName }} </q-toolbar-title>        
         <div v-if="!storeAuth.user.uid">
           <q-btn color="white" icon="person_add" flat to="/signup"
             >Cadastrar</q-btn
@@ -21,7 +20,6 @@
           @click="toggleRightDrawer"
           icon="menu"
         ></q-btn>
-
       </q-toolbar>
     </q-header>
 
@@ -52,7 +50,7 @@
         <!-- <q-btn flat align="left" icon="logout" color="red" class="full-width">Sair</q-btn> -->
       </q-list>
     </q-drawer>
-    <q-page-container>
+    <q-page-container style="padding: 0">
       <router-view />
     </q-page-container>
   </q-layout>

@@ -1,15 +1,9 @@
 <template>
-  <router-view />
+  <MainLayout />
 </template>
 
-<script >
-import { defineComponent } from 'vue'
-
-
-export default defineComponent({
-  name: 'App'
-})
-
+<script setup >
+import MainLayout from './layouts/MainLayout.vue';
 
 
 </script>
