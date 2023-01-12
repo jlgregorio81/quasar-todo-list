@@ -1,6 +1,6 @@
 <template>
   <transition appear enter-active-class="animated bounceInRight" leave-active-class="animated bounceOutRight">
-    <div style="margin-top: 2rem" class="row q-pa-md justify-center items-start q-gutter-md">
+    <div style="margin-top: 3rem" class="row q-pa-md justify-center items-start q-gutter-md">
       <div class="col-xs-12 col-md-3">
         <q-card class="my-card bg-indigo-14 text-white" bordered>
           <q-card-section class="bg-white">

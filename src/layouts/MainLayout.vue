@@ -2,16 +2,42 @@
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
       <q-toolbar>
-        <q-btn flat icon="home" to="/" />
-        <q-toolbar-title> {{ appName }} </q-toolbar-title>        
+        <!-- <q-btn flat round dense icon="tasks" to="/" /> -->
+        <q-avatar>
+          <q-icon name="tasks"/>
+        </q-avatar>
+        <q-toolbar-title> {{ appName }} </q-toolbar-title>
         <div v-if="!storeAuth.user.uid">
-          <q-btn color="white" icon="person_add" flat to="/signup"
-            >Cadastrar</q-btn
-          >
-          <q-btn to="/signin" color="white" icon="login" flat>Entrar</q-btn>
-        </div>
-        <q-btn flat color="blue-3" icon="help"  to="/" label="Sobre"
+          <div class="gt-sm">
+            <q-btn
+              label="Cadastrar"
+              color="white"
+              icon="person_add"
+              flat
+              to="/signup"
             />
+            <q-btn
+              label="Entrar"
+              color="white"
+              icon="login"
+              flat
+              to="/signin"
+            />
+          </div>
+          <div class="lt-md">
+            <q-btn color="white" icon="person_add" flat to="/signup" />
+            <q-btn color="white" icon="login" flat to="/signin" />
+          </div>
+        </div>
+        <q-btn
+          class="gt-sm"
+          flat
+          color="cyan-12"
+          icon="help"
+          to="/"
+          label="Sobre"
+        />
+        <q-btn class="lt-md" flat color="cyan-12" icon="help" to="/" />
         <q-btn
           v-if="storeAuth.user.uid"
           round
@@ -23,14 +49,24 @@
       </q-toolbar>
     </q-header>
 
-    <q-drawer behavior="mobile" v-model="rightDrawerOpen" bordered side="right" id="main-drawer">
+    <q-drawer
+      behavior="mobile"
+      v-model="rightDrawerOpen"
+      bordered
+      side="right"
+      id="main-drawer"
+    >
       <q-list>
         <q-item-label header> Links Essenciais </q-item-label>
         <q-item clickable to="/profile">
           <q-item-section avatar>
             <q-icon name="account_circle" />
           </q-item-section>
-          <q-item-section>{{ storeAuth.user.fullName ?  storeAuth.user.fullName : storeAuth.user.email   }}</q-item-section>
+          <q-item-section>{{
+            storeAuth.user.fullName
+              ? storeAuth.user.fullName
+              : storeAuth.user.email
+          }}</q-item-section>
         </q-item>
         <q-item v-for="item in linkItems" :key="item.name" :to="item.link">
           <q-item-section avatar>

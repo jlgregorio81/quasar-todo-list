@@ -14,8 +14,8 @@ export function useLoginUserPage() {
 
   //..new user data
   const user = reactive({
-    email: 'teste@teste.com',
-    password: '123456'
+    email: '',
+    password: ''
   })
 
   //..login user, using the auth

@@ -36,6 +36,9 @@ export default route(function (/* { store, ssrContext } */) {
     // if(!storeAuth.user.uid && to.name != 'signin' && to.name != 'signup' && to.name != 'home' && to.name != '' && to.path != '/'){      
     //   return { name: 'signin' }
     // } 
+
+
+
     if(!storeAuth.user.uid){
       if(to.name != 'signin' && to.name != 'signup' && to.name != 'home'){
         return { name: 'signin' }

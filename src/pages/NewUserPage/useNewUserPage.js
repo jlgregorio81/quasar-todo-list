@@ -26,7 +26,7 @@ export function useNewUserPage() {
         .then(() => {
           Dialog.create({ title: 'Deu certo!', message: 'Usuário cadastrado com sucesso!' })
             .onDismiss(() => {
-              router.push('/')
+              router.push('/tasks')
             })
         })
         .catch((error) => {
